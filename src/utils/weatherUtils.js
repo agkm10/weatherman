@@ -4,7 +4,10 @@ import rainy from "../assets/rainy.svg";
 import snowy from "../assets/snowy.svg";
 import sunny from "../assets/sunny.svg";
 import unknownIcon from "../assets/unknown-icon.svg";
+import apiKey from '../apiKey';
 
+
+const BASE_URL = `http://api.openweathermap.org/data/2.5/weather?APPID=${ apiKey }&units=imperial&`
 function isZipCode( location ) {
 	return !isNaN( parseInt( location ) );
 }
@@ -46,5 +49,12 @@ export function formatWeatherData( weatherData ) {
 }
 
 export function buildUrl( location ) {
+		if (isZipCode( location ) ) {
+			console.log(BASE_URL + `zip=${ location }`)
+			return BASE_URL + `zip=${ location }`
+		}
+		console.log(BASE_URL + `q=${ location }`)
+		return BASE_URL + `q=${ location }`
+
 
 }
